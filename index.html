@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>컬러 테트리스 | COLOR TETRIS</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23080b18'/%3E%3Crect x='5' y='5' width='10' height='10' fill='%2322d3ee'/%3E%3Crect x='17' y='5' width='10' height='10' fill='%23facc15'/%3E%3Crect x='5' y='17' width='10' height='10' fill='%23a78bfa'/%3E%3Crect x='17' y='17' width='10' height='10' fill='%234ade80'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <h1>COLOR TETRIS</h1>
+          <p>7가지 색상으로 즐기는 클래식 퍼즐</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" data-action="pause" type="button" title="일시정지 (P)">⏸</button>
+        <button class="icon-btn" id="sound-btn" type="button" aria-label="소리 끄기" title="소리 켜기/끄기">🔊</button>
+      </div>
+    </header>
+
+    <main class="game-shell">
+      <aside class="panel side-panel">
+        <section class="preview-box">
+          <h2>NEXT <span>다음 블록</span></h2>
+          <canvas id="next" width="120" height="120" aria-label="다음 블록 미리보기"></canvas>
+        </section>
+        <section class="preview-box">
+          <h2>HOLD <span>보관</span></h2>
+          <canvas id="hold" width="120" height="120" aria-label="보관 중인 블록"></canvas>
+        </section>
+        <section class="legend">
+          <h2>BLOCK COLORS</h2>
+          <ul>
+            <li><i style="--block-color:#22d3ee"></i>I</li>
+            <li><i style="--block-color:#facc15"></i>O</li>
+            <li><i style="--block-color:#a78bfa"></i>T</li>
+            <li><i style="--block-color:#4ade80"></i>S</li>
+            <li><i style="--block-color:#f87171"></i>Z</li>
+            <li><i style="--block-color:#60a5fa"></i>J</li>
+            <li><i style="--block-color:#fb923c"></i>L</li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="board-wrap">
+        <canvas id="board" width="300" height="600" aria-label="테트리스 게임 보드"></canvas>
+        <div id="overlay" class="overlay">
+          <div class="overlay-card">
+            <div class="overlay-kicker" id="overlay-kicker">READY?</div>
+            <h2 id="overlay-title">테트리스</h2>
+            <p id="overlay-desc">7가지 색상의 블록으로 라인을 완성해 보세요.</p>
+            <button id="overlay-btn" class="primary-btn" type="button">게임 시작</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel info-panel">
+        <section class="stat-box main-stat">
+          <span class="stat-label">SCORE</span>
+          <strong id="score">0</strong>
+        </section>
+        <section class="stat-box">
+          <span class="stat-label">HIGH SCORE</span>
+          <strong id="high-score">0</strong>
+        </section>
+        <div class="stat-row">
+          <section class="stat-box">
+            <span class="stat-label">LEVEL</span>
+            <strong id="level">1</strong>
+          </section>
+          <section class="stat-box">
+            <span class="stat-label">LINES</span>
+            <strong id="lines">0</strong>
+          </section>
+        </div>
+        <section class="controls-help">
+          <h2>KEYBOARD</h2>
+          <dl>
+            <div><dt>← →</dt><dd>좌우 이동</dd></div>
+            <div><dt>↓</dt><dd>소프트 드롭</dd></div>
+            <div><dt>↑ / X</dt><dd>시계 방향 회전</dd></div>
+            <div><dt>Z</dt><dd>반시계 방향 회전</dd></div>
+            <div><dt>SPACE</dt><dd>하드 드롭</dd></div>
+            <div><dt>C / SHIFT</dt><dd>블록 보관</dd></div>
+            <div><dt>P / ESC</dt><dd>일시정지</dd></div>
+            <div><dt>R</dt><dd>다시 시작</dd></div>
+          </dl>
+        </section>
+      </aside>
+    </main>
+
+    <section class="touch-controls" aria-label="터치 조작">
+      <button type="button" data-action="hold">보관</button>
+      <button type="button" data-action="left">◀</button>
+      <button type="button" data-action="down">▼</button>
+      <button type="button" data-action="right">▶</button>
+      <button type="button" data-action="rotate">↻</button>
+      <button type="button" data-action="hard">⤓</button>
+    </section>
+  </div>
+
+  <script src="tetris-core.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
